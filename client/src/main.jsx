@@ -26,6 +26,10 @@ import ProjectUpload from "./pages/ProjectUpload.jsx";
 import ProjectForm from "./components/ProjectForm.jsx";
 import AllProjects from "./pages/AllProjects.jsx";
 import { disableReactDevTools } from "@fvilers/disable-react-devtools";
+import axios from "axios";
+
+axios.defaults.baseURL = "https://university-projects-hub-api.onrender.com/";
+axios.defaults.withCredentials = true;
 
 if (process.env.NODE_ENV === "production") disableReactDevTools();
 

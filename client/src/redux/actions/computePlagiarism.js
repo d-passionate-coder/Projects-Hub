@@ -3,7 +3,7 @@ import axios from "axios";
 
 const computePlagiarism = createAsyncThunk("computePlagiarism", async (id) => {
   try {
-    const res = await axios.post("/api/proposal/compute-plagiarism/", {
+    const res = await axios.post("proposal/compute-plagiarism/", {
       id,
     });
 

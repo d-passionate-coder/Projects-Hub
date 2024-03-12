@@ -1,5 +1,4 @@
 import React from "react";
-import { hydrate } from "react-dom";
 
 const Button = ({
   color = "orange",

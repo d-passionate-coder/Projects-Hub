@@ -6,7 +6,7 @@ const getProjects = createAsyncThunk(
   "getProjects",
   async (_, { rejectWithValue, dispatch }) => {
     try {
-      const response = await axios.get("/api/project/user");
+      const response = await axios.get("project/user");
       return response.data;
     } catch (error) {
       if (error.response && error.response.data == "AuthFailure") {

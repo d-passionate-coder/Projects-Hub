@@ -9,7 +9,7 @@ import { setStep } from "../redux/features/proposalSlice";
 const ProposalForm = () => {
   useEffect(() => {
     axios
-      .get("/api/guideByInstitute")
+      .get("guideByInstitute")
       .then((res) => {
         setGuides(res.data);
       })
@@ -34,7 +34,7 @@ const ProposalForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("/api/proposal/upload", formData, {
+      .post("proposal/upload", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },

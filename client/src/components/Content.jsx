@@ -9,7 +9,7 @@ const Content = () => {
   const [projects, setProjects] = useState([]);
   useEffect(() => {
     axios
-      .get("/api/project/limit/6")
+      .get("project/limit/6")
       .then((res) => {
         setProjects(res.data);
       })

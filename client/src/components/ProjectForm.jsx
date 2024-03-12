@@ -47,7 +47,7 @@ const ProjectForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("/api/project/upload", formData, {
+      .post("project/upload", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },

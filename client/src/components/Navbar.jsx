@@ -16,7 +16,6 @@ const Navbar = ({ isLoading }) => {
   const dispatch = useDispatch();
 
   const { isLoggedIn, user } = useSelector((state) => state.auth);
-  console.log(user);
 
   const location = useLocation().pathname.split("/")[1] || "/";
 

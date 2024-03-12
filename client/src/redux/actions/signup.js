@@ -3,7 +3,7 @@ import axios from "axios";
 
 const registerUser = createAsyncThunk("registerUser", async (userData) => {
   try {
-    const response = await axios.post("/api/signup", userData);
+    const response = await axios.post("signup", userData);
     return response.data;
   } catch (error) {
     throw error;

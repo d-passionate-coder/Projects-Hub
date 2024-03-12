@@ -12,7 +12,7 @@ function App() {
   const dispatch = useDispatch();
   useEffect(() => {
     axios
-      .get("/api/checkLogin")
+      .get("checkLogin")
       .then((res) => {
         const user = res.data;
         if (user) {

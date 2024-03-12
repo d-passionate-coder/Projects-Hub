@@ -1,5 +1,6 @@
 import "dotenv/config";
 import express from "express";
+import cors from "cors";
 import mongoose from "mongoose";
 import signupRoute from "./pages/Auth/routes/signup.js";
 import logInroute from "./pages/Auth/routes/login.js";
@@ -11,6 +12,7 @@ import projectRoute from "./pages/Projects/routes/projects.js";
 import projectProposalRoute from "./pages/Projects/routes/projectProposal.js";
 import "./pages/Auth/config/passport.js";
 import getGuideByInstitute from "./pages/Auth/controllers/getGuideByInstitute.js";
+import corsOptions from "./config/corsOptions.js";
 
 const app = express();
 const PORT = process.env.PORT;
@@ -21,6 +23,8 @@ mongoose
     console.log("Succesfully connected");
   })
   .catch((err) => console.log(err));
+
+app.use(cors(corsOptions));
 
 app.use(
   session({

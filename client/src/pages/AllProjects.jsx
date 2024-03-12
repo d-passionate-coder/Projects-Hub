@@ -8,12 +8,11 @@ const AllProjects = () => {
 
   useEffect(() => {
     axios
-      .get("/api/project/all")
+      .get("project/all")
       .then((res) => {
         if (res.data) {
           setLoading(false);
           setProjects(res.data);
-          console.log(projects);
         } else {
           throw new Error("No Projects found");
         }

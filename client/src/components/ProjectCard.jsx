@@ -14,7 +14,6 @@ function getCollegeShortForm(collegeName) {
 }
 
 const ProjectCard = ({ project }) => {
-  console.log(project);
   const navigate = useNavigate();
   const { title, statement, category, id, createdBy } = project;
 

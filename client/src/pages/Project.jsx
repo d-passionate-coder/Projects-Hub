@@ -11,7 +11,7 @@ const Project = () => {
   const [data, setData] = useState(null);
   const { id } = useParams();
   useEffect(() => {
-    axios.get(`/api/project/${id}`).then((res) => {
+    axios.get(`project/${id}`).then((res) => {
       const pdfData = res.data.proposal.content.data;
       setData(pdfData);
     });

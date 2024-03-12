@@ -13,7 +13,7 @@ const PlagiarismChecker = () => {
 
   useEffect(() => {
     axios
-      .get(`/api/project/${id}`)
+      .get(`project/${id}`)
       .then((res) => {
         if (res.data.plagiarism) {
           dispatch(setPlagReport(res.data.plagiarism));

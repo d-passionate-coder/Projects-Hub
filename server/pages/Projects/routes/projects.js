@@ -5,6 +5,7 @@ import getProjectById from "../controllers/getProjectById.js";
 import getProjectByUserId from "../controllers/getProjectByUserId.js";
 import getProjectsByCount from "../controllers/getProjectsByCount.js";
 import getAllProjects from "../controllers/getAllProjects.js";
+import checkAuth from "../../Auth/middlewares/checkAuth.js";
 import setManual from "../controllers/setManual.js";
 
 // multer setup
@@ -20,8 +21,8 @@ const router = Router();
 //router.get("/manual", setManual);
 router.get("/all", getAllProjects);
 router.get("/limit/:count", getProjectsByCount);
-router.post("/upload", upload.single("pdf"), handleUpload);
-router.get("/user", getProjectByUserId);
-router.get("/:id", getProjectById);
+router.post("/upload", checkAuth, upload.single("pdf"), handleUpload);
+router.get("/user", checkAuth, getProjectByUserId);
+router.get("/:id", checkAuth, getProjectById);
 
 export default router;
