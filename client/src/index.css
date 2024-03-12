@@ -1,0 +1,31 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family: "rem";
+    src: url("/assets/fonts/RemRegular.woff") format('woff'),
+         url("/assets/fonts/RemRegular.ttf") format('truetype');
+  }
+
+  @font-face {
+    font-family: "remBold";
+    src: url("/assets/fonts/RemBold.woff") format('woff'),
+         url("/assets/fonts/RemBold.ttf") format('truetype');
+  }
+
+  @font-face {
+   font-family: "graphieBold";
+   src: url("/assets/fonts/GraphieBold.otf") format('opentype'),
+ }
+
+  html{
+     margin : 0;
+  }
+
+  body{
+     box-sizing: border-box;
+  }
