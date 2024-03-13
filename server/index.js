@@ -38,8 +38,18 @@ app.use(
     resave: false,
     saveUninitialized: true,
     store: sessionStore,
+    cookie: {
+      sameSite: "none",
+      secure: true,
+    },
   })
 );
+
+app.use((req, res, next) => {
+  console.log(req.secure);
+  next();
+});
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(passport.initialize());
