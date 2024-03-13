@@ -13,6 +13,7 @@ import projectProposalRoute from "./pages/Projects/routes/projectProposal.js";
 import "./pages/Auth/config/passport.js";
 import getGuideByInstitute from "./pages/Auth/controllers/getGuideByInstitute.js";
 import corsOptions from "./config/corsOptions.js";
+import MongoStore from "connect-mongo";
 
 const app = express();
 const PORT = process.env.PORT;
@@ -26,11 +27,22 @@ mongoose
 
 app.use(cors(corsOptions));
 
+const sessionStore = new MongoStore({
+  mongoUrl: process.env.MONGO_URL,
+  collection: "sessions",
+});
+
 app.use(
   session({
     secret: "keyboard cat",
     resave: false,
     saveUninitialized: true,
+    store: sessionStore,
+    cookie: {
+      maxAge: 1000 * 60 * 60 * 24,
+      sameSite: "none",
+      secure: true,
+    },
   })
 );
 app.use(express.urlencoded({ extended: true }));
