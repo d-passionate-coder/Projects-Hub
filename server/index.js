@@ -14,6 +14,7 @@ import "./pages/Auth/config/passport.js";
 import getGuideByInstitute from "./pages/Auth/controllers/getGuideByInstitute.js";
 import corsOptions from "./config/corsOptions.js";
 import MongoStore from "connect-mongo";
+import forceSecureConnection from "./pages/Auth/middlewares/forceSecureConnection.js";
 
 const app = express();
 const PORT = process.env.PORT;
@@ -45,11 +46,7 @@ app.use(
   })
 );
 
-app.use((req, res, next) => {
-  console.log(req.secure);
-  next();
-});
-
+app.use(forceSecureConnection);
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(passport.initialize());
