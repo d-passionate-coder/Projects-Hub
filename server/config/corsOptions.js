@@ -9,6 +9,7 @@ const corsOptions = {
     }
   },
   credentials: true,
+  sameSite: "none",
   optionsSuccessStatus: 200,
 };
 
