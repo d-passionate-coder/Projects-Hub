@@ -48,7 +48,7 @@ const ProjectForm = () => {
     e.preventDefault();
     uploadProject(formData)
       .then((res) => {
-        navigate(`/project/upload/approval/2/${res.data}`);
+        navigate(`/project/upload/approval/2/${res}`);
       })
       .catch((err) => {
         return err;

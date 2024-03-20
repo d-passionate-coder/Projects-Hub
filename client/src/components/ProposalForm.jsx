@@ -36,7 +36,7 @@ const ProposalForm = () => {
     uploadProposal(formData)
       .then((res) => {
         dispatch(setStep(1));
-        navigate(`/proposal/plagiarism-checker/2/${res.data}`);
+        navigate(`/proposal/plagiarism-checker/2/${res}`);
       })
       .catch((err) => {
         return err;
