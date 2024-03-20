@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const uploadProject = async (formData) => {
+export const uploadProposal = async (formData) => {
   try {
     const res = await axios.post("proposal/upload", formData, {
       headers: {
@@ -13,7 +13,7 @@ export const uploadProject = async (formData) => {
   }
 };
 
-export const uploadProposal = async (formData) => {
+export const uploadProject = async (formData) => {
   try {
     const res = await axios.post("project/upload", formData, {
       headers: {
