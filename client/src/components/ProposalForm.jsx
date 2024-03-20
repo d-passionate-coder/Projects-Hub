@@ -1,17 +1,17 @@
 import React, { useEffect } from "react";
 import InputBox from "./InputBox";
 import { useState } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setStep } from "../redux/features/proposalSlice";
+import { uploadProposal } from "../api/Upload";
+import getGuideByInstitute from "../api/getGuideByInstitute.js";
 
 const ProposalForm = () => {
   useEffect(() => {
-    axios
-      .get("guideByInstitute")
-      .then((res) => {
-        setGuides(res.data);
+    getGuideByInstitute()
+      .then((guides) => {
+        setGuides(guides);
       })
       .catch((err) => {
         console.log(err);
@@ -33,12 +33,7 @@ const ProposalForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios
-      .post("proposal/upload", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      })
+    uploadProposal(formData)
       .then((res) => {
         dispatch(setStep(1));
         navigate(`/proposal/plagiarism-checker/2/${res.data}`);

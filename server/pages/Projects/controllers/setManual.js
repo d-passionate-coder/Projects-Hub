@@ -2,20 +2,17 @@ import User from "../../Auth/models/Users.js";
 import Project from "../models/Projects.js";
 
 const setManual = (req, res) => {
-  User.findById(req.user.id)
-    .populate("projects")
-    .then((user) => {
-      const proj = user.projects;
-      proj.forEach((element) => {
-        console.log(element.id);
-        Project.updateOne({ _id: element.id }, { createdBy: req.user.id })
-          .then((result) => {
-            console.log(result);
-            res.end();
-          })
-          .catch((err) => console.log(err));
-      });
-    });
+  Project.updateOne(
+    { title: "Hello world" },
+    {
+      status: "Approved",
+    }
+  )
+    .then((res) => console.log(res))
+    .catch((err) => console.log(err));
+  // Project.updateMany({}, { $set: { plagiarism: null } })
+  //   .then(() => console.log("done"))
+  //   .catch((err) => console.log(err));
 };
 
 export default setManual;

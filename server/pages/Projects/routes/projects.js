@@ -7,6 +7,7 @@ import getProjectsByCount from "../controllers/getProjectsByCount.js";
 import getAllProjects from "../controllers/getAllProjects.js";
 import checkAuth from "../../Auth/middlewares/checkAuth.js";
 import setManual from "../controllers/setManual.js";
+import deleteProject from "../controllers/deleteProject.js";
 
 // multer setup
 const storage = multer.memoryStorage();
@@ -18,11 +19,12 @@ const router = Router();
 // router.get("/software", getProjectsbyCategory);
 // router.get("/hardware", getProjectsbyCategory);
 
-//router.get("/manual", setManual);
+router.get("/manual", setManual);
 router.get("/all", getAllProjects);
 router.get("/limit/:count", getProjectsByCount);
 router.post("/upload", checkAuth, upload.single("pdf"), handleUpload);
 router.get("/user", checkAuth, getProjectByUserId);
 router.get("/:id", checkAuth, getProjectById);
+router.delete("/:id", checkAuth, deleteProject);
 
 export default router;

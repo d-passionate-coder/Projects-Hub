@@ -13,18 +13,20 @@ const projectSchema = new mongoose.Schema(
     proposal: {
       content: Buffer,
       statement: String,
-      approved: {
-        type: Boolean,
-        default: true,
+      status: {
+        type: String,
+        enum: ["Approved", "Pending", "Rejected"],
+        default: "Pending",
       },
-      pending: {
-        type: Boolean,
-        default: false,
-      },
+    },
+    status: {
+      type: String,
+      enum: ["Approved", "Pending", "Rejected"],
+      default: "Pending",
     },
     content: Buffer,
     plagiarism: {
-      score: Number,
+      report: Array,
     },
     approved: {
       type: Boolean,

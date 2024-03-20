@@ -9,5 +9,5 @@ export const store = configureStore({
     projects: projectSlice,
     proposal: proposalSlice,
   },
-  devTools: false,
+  // devTools: false,
 });

@@ -2,16 +2,17 @@ import React, { useEffect, useState } from "react";
 import ProjectCard from "./ProjectCard";
 import Button from "./Button";
 import { NavLink, useNavigate } from "react-router-dom";
-import axios from "axios";
+import { fetchProjectsBycount } from "../api/fetchProjects";
 
 const Content = () => {
   const navigate = useNavigate();
   const [projects, setProjects] = useState([]);
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
-    axios
-      .get("project/limit/6")
+    fetchProjectsBycount(6)
       .then((res) => {
-        setProjects(res.data);
+        setProjects(res);
+        setLoading(false);
       })
       .catch((err) => {
         console.log(err);
@@ -25,9 +26,14 @@ const Content = () => {
         <p className="font-graphieBold text-3xl">Projects</p>
       </div>
       <div className="flex flex-wrap gap-8 gap-y-12 mt-8">
-        {projects.map((project) => {
-          return <ProjectCard project={project} />;
-        })}
+        {loading ? (
+          <p>Loading...</p>
+        ) : (
+          projects?.length > 0 &&
+          projects.map((project) => {
+            return <ProjectCard project={project} />;
+          })
+        )}
       </div>
       <div className="flex justify-end pt-3">
         <p

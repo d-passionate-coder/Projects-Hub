@@ -19,9 +19,11 @@ const ProposalUpload = () => {
 
   return (
     <div className="flex justify-center pt-7 bg-background">
-      <div>
+      <div className="flex flex-col items-center">
         <ProgressLevels fields={fields} />
-        <Outlet />
+        <div className="min-w-[34rem]">
+          <Outlet />
+        </div>
       </div>
     </div>
   );

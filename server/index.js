@@ -15,6 +15,7 @@ import getGuideByInstitute from "./pages/Auth/controllers/getGuideByInstitute.js
 import corsOptions from "./config/corsOptions.js";
 import MongoStore from "connect-mongo";
 import forceSecureConnection from "./pages/Auth/middlewares/forceSecureConnection.js";
+import checkAuth from "./pages/Auth/middlewares/checkAuth.js";
 
 const app = express();
 const PORT = process.env.PORT;
@@ -42,6 +43,7 @@ app.use(
     cookie: {
       sameSite: "none",
       secure: true,
+      maxAge: 24 * 60 * 60 * 1000,
     },
   })
 );
@@ -57,6 +59,6 @@ app.use("/login", logInroute);
 app.get("/checkLogin", checkLogin);
 app.get("/guideByInstitute", getGuideByInstitute);
 app.use("/project", projectRoute);
-app.use("/proposal", projectProposalRoute);
+app.use("/proposal", checkAuth, projectProposalRoute);
 
 app.listen(PORT, () => console.log("server started!"));

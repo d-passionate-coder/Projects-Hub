@@ -4,6 +4,7 @@ import { nanoid } from "nanoid";
 import { NavLink, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutUser } from "../redux/actions/login";
+import UserOptions from "./UserOptions";
 
 const items = [
   { id: nanoid(), name: "Home" },
@@ -59,15 +60,8 @@ const Navbar = ({ isLoading }) => {
           </NavLink>
         </div>
       ) : (
-        <div className="flex items-center">
-          <img
-            onClick={() => {
-              dispatch(logoutUser());
-            }}
-            className="pr-2 h-9 w-9"
-            src="/assets/svg/user.svg"
-          />
-          <p className="">{user.firstName}</p>
+        <div className="">
+          <UserOptions name={user.firstName} />
         </div>
       )}
     </nav>

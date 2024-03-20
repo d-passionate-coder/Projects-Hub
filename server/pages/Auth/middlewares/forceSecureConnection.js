@@ -6,7 +6,6 @@ const forceSecureConnection = (req, res, next) => {
     value: true,
     writable: false,
   });
-  console.log(req.secure);
   // Proceed to the next middleware
   next();
 };

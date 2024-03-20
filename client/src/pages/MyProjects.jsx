@@ -13,10 +13,8 @@ const MyProjects = () => {
     dispatch(getProjects());
   }, []);
 
-  return loading || (!projects && !error) ? (
+  return loading ? (
     <div>Loading...</div>
-  ) : !isLoggedIn ? (
-    <div>Please Login to continue.</div>
   ) : error ? (
     <div>An error occured :/</div>
   ) : (

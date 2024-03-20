@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import getProjects from "../redux/actions/getProjects";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { uploadProject } from "../api/Upload";
 
 const ProjectForm = () => {
   const dispatch = useDispatch();
@@ -46,12 +46,7 @@ const ProjectForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios
-      .post("project/upload", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      })
+    uploadProject(formData)
       .then((res) => {
         navigate(`/project/upload/approval/2/${res.data}`);
       })
@@ -82,14 +77,20 @@ const ProjectForm = () => {
             <option className="text-xs" selected>
               Select project
             </option>
-            {projects?.map(
-              (project) =>
-                project.proposalApproved && (
-                  <option value={project._id} className="text-xs">
-                    {project.title}
-                  </option>
-                )
-            )}
+            {projects &&
+              projects.length > 0 &&
+              projects.map(
+                (project) =>
+                  project.proposalStatus === "Approved" && (
+                    <option
+                      key={project.id}
+                      value={project.id}
+                      className="text-xs"
+                    >
+                      {project.title}
+                    </option>
+                  )
+              )}
           </select>
         </div>
         <label htmlFor="category" className="font-medium">

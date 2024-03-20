@@ -26,7 +26,7 @@ const ProjectCard = ({ project }) => {
       <div className="pb-16 font-poppins border-t-black border-t border-opacity-10 p-2">
         <div className="flex justify-start text-sm font-medium items-center gap-3 p-2">
           <div className="text-center p-1 px-2 text-white bg-black">
-            {category.toUpperCase()}
+            {category?.toUpperCase()}
           </div>
           <p>{getCollegeShortForm(createdBy.institute)}</p>
         </div>

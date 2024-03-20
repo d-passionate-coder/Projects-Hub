@@ -8,20 +8,31 @@ const getProjectByUserId = (req, res) => {
     })
     .then((user) => {
       if (user) {
-        const projDetails = user.projects.map(
-          ({ id, title, proposal, createdAt, guide, content, approved }) => {
-            return {
-              id,
-              title,
-              proposalApproved: proposal.approved,
-              projectApproved: approved,
-              createdAt,
-              guide,
-              projectSubmitted: content ? true : false,
-            };
-          }
-        );
-        return res.status(200).send(projDetails);
+        const projDetails =
+          user.projects?.length <= 0
+            ? []
+            : user.projects.map(
+                ({
+                  id,
+                  title,
+                  proposal,
+                  createdAt,
+                  guide,
+                  content,
+                  status,
+                }) => {
+                  return {
+                    id,
+                    title,
+                    proposalStatus: proposal.status,
+                    projectStatus: status,
+                    createdAt,
+                    guide,
+                    projectSubmitted: content ? true : false,
+                  };
+                }
+              );
+        return res.send(projDetails);
       } else {
         throw new Error("User not found");
       }

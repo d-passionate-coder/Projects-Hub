@@ -6,9 +6,9 @@ const computePlagiarism = createAsyncThunk("computePlagiarism", async (id) => {
     const res = await axios.post("proposal/compute-plagiarism/", {
       id,
     });
-
     return res.data;
   } catch (err) {
+    console.log(err);
     throw err;
   }
 });

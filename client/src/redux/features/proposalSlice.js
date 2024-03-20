@@ -15,9 +15,6 @@ const proposalSlice = createSlice({
     setStep: (state, action) => {
       state.step = action.payload;
     },
-    setPlagReport: (state, action) => {
-      state.plagReport = action.payload;
-    },
   },
   extraReducers: (builder) => {
     builder

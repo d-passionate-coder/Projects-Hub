@@ -4,6 +4,7 @@ const handleUpload = (req, res) => {
   const { project: id, category } = req.body;
   const projectPdf = req.file.buffer;
 
+  console.log(id);
   Project.findById(id)
     .then((project) => {
       if (project) {
@@ -16,7 +17,7 @@ const handleUpload = (req, res) => {
       }
     })
     .then((updatedProject) => {
-      return res.status(201).send(updatedProject.id);
+      return res.status(200).send(updatedProject.id);
     })
     .catch((err) => {
       return res.status(500).send(err.message);
