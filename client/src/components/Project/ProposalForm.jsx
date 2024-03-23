@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
-import InputBox from "./InputBox";
+import InputBox from "../utils/InputBox.jsx";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { setStep } from "../redux/features/proposalSlice";
-import { uploadProposal } from "../api/Upload";
-import getGuideByInstitute from "../api/getGuideByInstitute.js";
+import { setStep } from "../../redux/features/proposalSlice.js";
+import { uploadProposal } from "../../api/Upload.js";
+import getGuideByInstitute from "../../api/getGuideByInstitute.js";
 
 const ProposalForm = () => {
   useEffect(() => {
@@ -36,7 +36,7 @@ const ProposalForm = () => {
     uploadProposal(formData)
       .then((res) => {
         dispatch(setStep(1));
-        navigate(`/proposal/plagiarism-checker/2/${res}`);
+        navigate(`/proposal/upload/plagiarism-checker/2/${res}`);
       })
       .catch((err) => {
         return err;
@@ -97,7 +97,7 @@ const ProposalForm = () => {
               onChange={handleChange}
               value={guide}
             >
-              <option className="text-xs" selected>
+              <option value="" className="text-xs" selected>
                 Select your guide
               </option>
               {guides.length > 0 &&

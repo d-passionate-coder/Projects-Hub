@@ -8,7 +8,7 @@ import MyProjects from "./pages/MyProjects.jsx";
 import { store } from "./redux/store.js";
 import { Provider } from "react-redux";
 import ProposalUpload from "./pages/ProposalUpload.jsx";
-import ProposalForm from "./components/ProposalForm.jsx";
+import ProposalForm from "./components/Project/ProposalForm.jsx";
 import { Navigate } from "react-router-dom";
 import "./index.css";
 
@@ -18,17 +18,19 @@ import {
   createRoutesFromElements,
   Route,
 } from "react-router-dom";
-import PlagiarismChecker from "./components/PlagiarismChecker.jsx";
-import Approval from "./components/Approval.jsx";
+import PlagiarismChecker from "./components/Project/PlagiarismChecker.jsx";
+import Approval from "./components/Project/Approval.jsx";
 import ProtectedRoutes from "./pages/ProtectedRoutes.jsx";
-import Project from "./pages/Project.jsx";
+import ViewProject from "./pages/ViewProject.jsx";
 import ProjectUpload from "./pages/ProjectUpload.jsx";
-import ProjectForm from "./components/ProjectForm.jsx";
+import ProjectForm from "./components/Project/ProjectForm.jsx";
 import AllProjects from "./pages/AllProjects.jsx";
 import { disableReactDevTools } from "@fvilers/disable-react-devtools";
 import axios from "axios";
+import Dashboard from "./pages/Dashboard.jsx";
+import ViewProposal from "./pages/ViewProposal.jsx";
 
-axios.defaults.baseURL = "http://localhost:8000/";
+axios.defaults.baseURL = "https://university-projects-hub-api.onrender.com/";
 axios.defaults.withCredentials = true;
 
 if (process.env.NODE_ENV === "production") disableReactDevTools();
@@ -41,7 +43,7 @@ const router = createBrowserRouter(
       <Route path="login" element={<Login />} />
       <Route path="" element={<ProtectedRoutes />}>
         <Route path="project">
-          <Route path=":id" element={<Project />} />
+          <Route path=":id" element={<ViewProject />} />
           <Route path="all" element={<AllProjects />} />
           <Route path="upload" element={<ProjectUpload />}>
             <Route path="submit/:step" element={<ProjectForm />} />
@@ -50,14 +52,18 @@ const router = createBrowserRouter(
           </Route>
         </Route>
         <Route path="myProjects" element={<MyProjects />} />
-        <Route path="proposal" element={<ProposalUpload />}>
-          <Route path="" element={<Navigate to="submit/1" replace />} />
-          <Route path="submit/:step" element={<ProposalForm />} />
-          <Route
-            path="plagiarism-checker/:step/:id"
-            element={<PlagiarismChecker />}
-          />
-          <Route path="approval/:step/:id" element={<Approval />} />
+        <Route path="dashboard" element={<Dashboard />} />
+        <Route path="proposal">
+          <Route path=":id" element={<ViewProposal />} />
+          <Route path="upload" element={<ProposalUpload />}>
+            <Route path="submit/:step" element={<ProposalForm />} />
+            <Route
+              path="plagiarism-checker/:step/:id"
+              element={<PlagiarismChecker />}
+            />
+            <Route path="approval/:step/:id" element={<Approval />} />
+            <Route path="" element={<Navigate to="submit/1" replace />} />
+          </Route>
         </Route>
       </Route>
     </Route>

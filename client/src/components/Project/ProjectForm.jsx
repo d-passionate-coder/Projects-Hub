@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import getProjects from "../redux/actions/getProjects";
+import getProjects from "../../redux/actions/getProjects";
 import { useNavigate } from "react-router-dom";
-import { uploadProject } from "../api/Upload";
+import { uploadProject } from "../../api/Upload";
 
 const ProjectForm = () => {
   const dispatch = useDispatch();
@@ -74,7 +74,7 @@ const ProjectForm = () => {
             onChange={handleChange}
             value={project}
           >
-            <option className="text-xs" selected>
+            <option value="" className="text-xs">
               Select project
             </option>
             {projects &&
@@ -105,7 +105,9 @@ const ProjectForm = () => {
             onChange={handleChange}
             value={category}
           >
-            <option selected>Choose category</option>
+            <option value="" selected>
+              Choose category
+            </option>
             <option value="software">Software</option>
             <option value="hardware">Hardware</option>
           </select>

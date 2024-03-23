@@ -1,15 +1,12 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { setStep } from "../redux/features/proposalSlice";
-import IconButton from "@mui/material/IconButton";
-import DeleteIcon from "@mui/icons-material/Delete";
-import { deleteProject, deleteProposal } from "../api/handleDelete";
-import ConfirmDialog from "./ConfirmDialog";
+import { setStep } from "../../redux/features/proposalSlice";
+import { deleteProject, deleteProposal } from "../../api/handleDelete";
 
 const fields = ["No.", "Title", "Project guide", "Status", "Date"];
 
-const Table = ({ isProposal = true }) => {
+const Table = ({ isProposal = true, user = "student" }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
@@ -26,15 +23,6 @@ const Table = ({ isProposal = true }) => {
 
   return (
     <div>
-      <ConfirmDialog
-        isProposal={isProposal}
-        open={open}
-        handleYes={() => {
-          handleYes();
-          setOpen(false);
-        }}
-        handleClose={() => setOpen(false)}
-      />
       {
         <table className="text-left text-sm border-t border-x border-[#DBDBDB] border-separate border-spacing-0 w-full rounded-md overflow-hidden">
           <tr className="bg-[#F0F0F0]">
@@ -45,8 +33,16 @@ const Table = ({ isProposal = true }) => {
             <td className="w-56 border-b border-[#DBDBDB]">{fields[2]}</td>
             <td className="w-56 border-b border-[#DBDBDB]">{fields[3]}</td>
             <td className="border-b border-[#DBDBDB]">{fields[4]}</td>
-            <td className="border-b border-[#DBDBDB]"></td>
-            <td className="border-b border-[#DBDBDB]"></td>
+            <td
+              className={`border-b border-[#DBDBDB] ${
+                user === "faculty" && "hidden"
+              }`}
+            ></td>
+            <td
+              className={`border-b border-[#DBDBDB] ${
+                user === "faculty" && "hidden"
+              }`}
+            ></td>
           </tr>
           {projects.length > 0 &&
             projects.reduce(
@@ -114,7 +110,11 @@ const Table = ({ isProposal = true }) => {
                           year: "numeric",
                         })}
                       </td>
-                      <td className="border-b border-[#DBDBDB]">
+                      <td
+                        className={`border-b border-[#DBDBDB] ${
+                          user === "faculty" && "hidden"
+                        }`}
+                      >
                         <p
                           onClick={() => {
                             if (isProposal) {
@@ -130,7 +130,11 @@ const Table = ({ isProposal = true }) => {
                           View
                         </p>
                       </td>
-                      <td className="border-b border-[#DBDBDB]">
+                      <td
+                        className={`border-b border-[#DBDBDB] ${
+                          user === "faculty" && "hidden"
+                        }`}
+                      >
                         <IconButton
                           onClick={() => {
                             setDeleteId(id);

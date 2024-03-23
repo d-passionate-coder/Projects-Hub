@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import ProjectCard from "../components/ProjectCard";
+import ProjectCard from "../components/Project/ProjectCard";
 import { fetchAllProjects } from "../api/fetchProjects";
 
 const AllProjects = () => {

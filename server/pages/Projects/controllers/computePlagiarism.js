@@ -36,11 +36,15 @@ const computePlagiarism = (req, res) => {
   Project.findById(projectId)
     .then(async (project) => {
       if (project) {
-        if (project.plagiarism?.report?.length > 0) {
-          return res.send(project.plagiarism.report);
+        const { proposal, plagiarism, id } = project;
+        if (proposal.status !== "Pending") {
+          return res.send(plagiarism.report);
         }
-        const queryText = await extractTextFromBuffer(project.proposal.content);
-        const curId = project.id;
+        if (plagiarism?.report?.length > 0) {
+          return res.send(plagiarism.report);
+        }
+        const queryText = await extractTextFromBuffer(proposal.content);
+        const curId = id;
         const projects = await Project.find({
           _id: { $ne: curId },
           status: "Approved",

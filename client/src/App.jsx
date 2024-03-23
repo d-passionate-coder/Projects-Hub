@@ -1,10 +1,11 @@
-import Navbar from "./components/Navbar";
+import Navbar from "./components/Home/Navbar";
 import { Outlet } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { setLoginStatus } from "./redux/features/authSlice";
 import { useDispatch } from "react-redux";
 import { useScrollToTop } from "./hooks/useScrollToTop";
+import { NextUIProvider } from "@nextui-org/react";
 
 function App() {
   useScrollToTop();
@@ -31,8 +32,16 @@ function App() {
 
   return (
     <>
-      <Navbar isLoading={isLoading} />
-      {isLoading ? <div></div> : <Outlet />}
+      <NextUIProvider>
+        {isLoading ? (
+          <div>Server is starting...</div>
+        ) : (
+          <>
+            <Navbar />
+            <Outlet />
+          </>
+        )}
+      </NextUIProvider>
     </>
   );
 }

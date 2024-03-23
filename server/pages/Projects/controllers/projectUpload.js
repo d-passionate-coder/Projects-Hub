@@ -4,7 +4,6 @@ const handleUpload = (req, res) => {
   const { project: id, category } = req.body;
   const projectPdf = req.file.buffer;
 
-  console.log(id);
   Project.findById(id)
     .then((project) => {
       if (project) {

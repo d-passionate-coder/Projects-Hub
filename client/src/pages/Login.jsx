@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import InputBox from "../components/InputBox";
+import InputBox from "../components/utils/InputBox";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../redux/actions/login";

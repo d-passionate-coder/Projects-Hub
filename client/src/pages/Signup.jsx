@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import InputBox from "../components/InputBox";
+import InputBox from "../components/utils/InputBox";
 import collegeData from "../constants/engineering_colleges.json";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";

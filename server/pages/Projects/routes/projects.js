@@ -8,6 +8,8 @@ import getAllProjects from "../controllers/getAllProjects.js";
 import checkAuth from "../../Auth/middlewares/checkAuth.js";
 import setManual from "../controllers/setManual.js";
 import deleteProject from "../controllers/deleteProject.js";
+import getProjectsByGuide from "../controllers/getProjectsByGuide.js";
+import changeProjectStatus from "../controllers/changeProjectStatus.js";
 
 // multer setup
 const storage = multer.memoryStorage();
@@ -24,6 +26,8 @@ router.get("/all", getAllProjects);
 router.get("/limit/:count", getProjectsByCount);
 router.post("/upload", checkAuth, upload.single("pdf"), handleUpload);
 router.get("/user", checkAuth, getProjectByUserId);
+router.get("/guide", getProjectsByGuide);
+router.post("/changeStatus", changeProjectStatus);
 router.get("/:id", checkAuth, getProjectById);
 router.delete("/:id", checkAuth, deleteProject);
 

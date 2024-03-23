@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import ProjectCard from "./ProjectCard";
-import Button from "./Button";
+import ProjectCard from "../Project/ProjectCard";
+import Button from "../utils/Button";
 import { NavLink, useNavigate } from "react-router-dom";
-import { fetchProjectsBycount } from "../api/fetchProjects";
+import { fetchProjectsBycount } from "../../api/fetchProjects";
 
 const Content = () => {
   const navigate = useNavigate();
@@ -55,7 +55,7 @@ const Content = () => {
             </p>
           </div>
           <div>
-            <NavLink to="/proposal/submit/1">
+            <NavLink to="/proposal/upload/submit/1">
               <Button text={"Take me there!"} width={"custom"} />
             </NavLink>
           </div>
