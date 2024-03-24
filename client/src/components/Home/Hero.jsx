@@ -6,8 +6,11 @@ const Hero = () => {
     <main className="relative h-auto">
       <img src="/assets/images/BackgroundImage.jpg" alt="" />
       <div className="w-auto text-center absolute  left-[50%] translate-x-[-50%] top-[4.5rem]">
-        <div className="font-remBold text-nowrap text-[3.5rem] leading-none">
+        {/* <div className="font-remBold text-nowrap text-[3.5rem] leading-none">
           A Showcase Of Student-driven <br /> Innovation
+        </div> */}
+        <div className="font-remBold text-nowrap text-[3.5rem] leading-none">
+          The Online Integrated Platform <br /> For Projects
         </div>
         <div className="font-poppins p-4 mt-3 text-foreground2">
           Browse through a diverse collection of innovative projects, <br />

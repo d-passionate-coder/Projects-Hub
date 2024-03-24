@@ -28,7 +28,11 @@ const Navbar = () => {
     <nav className="flex justify-between items-center bg-background2 w-full h-20 font-rem drop-shadow relative p-5 z-10">
       <div className="flex justify-between ml-10">
         <NavLink to="/">
-          <img src="/assets/svg/siteLogo.svg" alt="" />
+          <img
+            className="h-14 w-[4.5rem]"
+            src="/assets/images/finalLogo.png"
+            alt=""
+          />
         </NavLink>
         <div className="ml-20 flex justify-around gap-14 items-center">
           {items.map((item) => (
