@@ -1,31 +1,36 @@
-import { connect } from "mongoose";
 import Project from "../models/Projects.js";
 
 const getAllProjects = (req, res) => {
-  Project.find({ approved: true })
-    .populate("createdBy")
+  const { title, category, institute } = req.query;
+
+  const queryObject = { status: "Approved" };
+
+  if (title) {
+    queryObject.title = { $regex: title, $options: "i" };
+  }
+
+  if (category) {
+    queryObject.category = { $regex: category, $options: "i" };
+  }
+
+  if (institute) {
+    queryObject.institute = { $regex: institute, $options: "i" };
+  }
+
+  Project.find(queryObject)
     .then((projects) => {
       if (projects) {
         const ProjectDetails =
           projects?.length > 0
-            ? projects.reduce(
-                (
-                  filtered,
-                  { title, id, proposal, category, createdBy, content, status }
-                ) => {
-                  content &&
-                    status === "Approved" &&
-                    filtered.push({
-                      title,
-                      id,
-                      statement: proposal.statement,
-                      category,
-                      createdBy,
-                    });
-                  return filtered;
-                },
-                []
-              )
+            ? projects.map(({ title, id, proposal, category, institute }) => {
+                return {
+                  title,
+                  id,
+                  statement: proposal.statement,
+                  category,
+                  institute,
+                };
+              })
             : [];
         res.send(ProjectDetails);
       } else {

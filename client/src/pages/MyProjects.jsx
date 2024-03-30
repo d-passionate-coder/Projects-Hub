@@ -1,10 +1,9 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import getProjects from "../redux/actions/getProjects.js";
-import Table from "../components/Table/Table.jsx";
-import Button from "../components/utils/Button.jsx";
 import { NavLink, useNavigate } from "react-router-dom";
 import CustomTable from "../components/Table/CustomTable.jsx";
+import { Button } from "@nextui-org/react";
 
 const proposalFields = [
   {
@@ -80,7 +79,9 @@ const MyProjects = () => {
       <div className="flex justify-between items-center pt-4 pb-7">
         <p className="font-graphieBold text-4xl">Project proposals</p>
         <NavLink to={"/proposal/upload/submit/1"}>
-          <Button text={"New"} />
+          <Button className="text-white bg-orange rounded-md drop-shadow font-rem text-md">
+            New
+          </Button>
         </NavLink>
       </div>
       {loading || !projects ? (
@@ -95,7 +96,9 @@ const MyProjects = () => {
       <div className="flex justify-between items-center pt-16 pb-7">
         <p className="font-graphieBold text-4xl">Final submissions</p>
         <NavLink to="/project/upload/submit/1">
-          <Button text={"New"} />
+          <Button className="text-white bg-orange rounded-md drop-shadow font-rem text-md">
+            New
+          </Button>
         </NavLink>
       </div>
       {loading || !projects ? (

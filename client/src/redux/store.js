@@ -11,5 +11,5 @@ export const store = configureStore({
     proposal: proposalSlice,
     dashboard: dashboardSlice,
   },
-  //devTools: false,
+  devTools: false,
 });

@@ -29,6 +29,7 @@ import { disableReactDevTools } from "@fvilers/disable-react-devtools";
 import axios from "axios";
 import Dashboard from "./pages/Dashboard.jsx";
 import ViewProposal from "./pages/ViewProposal.jsx";
+import AddNewUser from "./pages/AddNewUser.jsx";
 
 axios.defaults.baseURL = "https://university-projects-hub-api.onrender.com/";
 axios.defaults.withCredentials = true;
@@ -65,6 +66,7 @@ const router = createBrowserRouter(
             <Route path="" element={<Navigate to="submit/1" replace />} />
           </Route>
         </Route>
+        <Route path="addNewUser" element={<AddNewUser />} />
       </Route>
     </Route>
   )

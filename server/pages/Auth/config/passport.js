@@ -28,10 +28,10 @@ const customFields = {
 const verifyCallback = function (email, password, done) {
   User.findOne({ email })
     .then((user) => {
-      if (!user) return done(null, false);
+      if (!user) return done("Email not found", false);
       const isValid = verifyPassword(password, user.hash, user.salt);
       if (isValid) return done(null, user);
-      else return done(null, false);
+      else return done("Incorrect password", false);
     })
     .catch((err) => done(err));
 };

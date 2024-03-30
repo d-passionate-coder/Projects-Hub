@@ -1,18 +1,12 @@
 import User from "../../Auth/models/Users.js";
+import { Faculty, Student } from "../../Auth/models/validate.js";
 import Project from "../models/Projects.js";
 
-const setManual = (req, res) => {
-  Project.updateOne(
-    { title: "Hello world" },
-    {
-      status: "Approved",
-    }
-  )
-    .then((res) => console.log(res))
-    .catch((err) => console.log(err));
-  // Project.updateMany({}, { $set: { plagiarism: null } })
-  //   .then(() => console.log("done"))
-  //   .catch((err) => console.log(err));
+const setManual = async (req, res) => {
+  const res1 = await Student.deleteMany({});
+  console.log(res1);
+  const res2 = await Faculty.deleteMany({});
+  console.log(res2);
 };
 
 export default setManual;

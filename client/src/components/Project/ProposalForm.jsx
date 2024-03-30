@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { setStep } from "../../redux/features/proposalSlice.js";
 import { uploadProposal } from "../../api/Upload.js";
 import getGuideByInstitute from "../../api/getGuideByInstitute.js";
+import { Button } from "@nextui-org/react";
 
 const ProposalForm = () => {
   useEffect(() => {
@@ -145,9 +146,12 @@ const ProposalForm = () => {
             />
           </div>
         </div>
-        <button className="bg-orange text-white w-full flex justify-center items-center rounded-lg drop-shadow cursor-pointer p-1 mt-4 text-base">
+        <Button
+          className="bg-orange text-white text-base font-rem h-8 rounded-lg"
+          type="submit"
+        >
           Submit
-        </button>
+        </Button>
       </form>
     </div>
   );

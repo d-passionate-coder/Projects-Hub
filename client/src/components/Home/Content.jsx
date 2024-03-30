@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import ProjectCard from "../Project/ProjectCard";
-import Button from "../utils/Button";
+//import Button from "../utils/Button";
 import { NavLink, useNavigate } from "react-router-dom";
 import { fetchProjectsBycount } from "../../api/fetchProjects";
+import { Button } from "@nextui-org/react";
 
 const Content = () => {
   const navigate = useNavigate();
@@ -56,7 +57,10 @@ const Content = () => {
           </div>
           <div>
             <NavLink to="/proposal/upload/submit/1">
-              <Button text={"Take me there!"} width={"custom"} />
+              {/* <Button text={"Take me there!"} width={"custom"} /> */}
+              <Button className="text-white bg-orange rounded-md drop-shadow font-rem text-md">
+                Take me there!
+              </Button>
             </NavLink>
           </div>
         </div>

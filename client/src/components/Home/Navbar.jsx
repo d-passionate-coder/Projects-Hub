@@ -1,26 +1,19 @@
 import React from "react";
-import Button from "../utils/Button";
-import { nanoid } from "nanoid";
-import { NavLink, useLocation } from "react-router-dom";
+import {
+  Button,
+  Dropdown,
+  DropdownItem,
+  DropdownMenu,
+  DropdownTrigger,
+} from "@nextui-org/react";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import UserOptions from "./UserOptions";
+import { ChevronDown } from "../utils/Icons";
 
-const studentNav = [
-  { id: nanoid(), name: "Home" },
-  { id: nanoid(), name: "Categories" },
-  { id: nanoid(), name: "Institute" },
-  { id: nanoid(), name: "My Projects", path: "myProjects" },
-];
-
-const TeacherNav = [
-  { id: nanoid(), name: "Home" },
-  { id: nanoid(), name: "Categories" },
-  { id: nanoid(), name: "Institute" },
-  { id: nanoid(), name: "Dashboard", path: "dashboard" },
-];
 const Navbar = () => {
+  const navigate = useNavigate();
   const { isLoggedIn, user } = useSelector((state) => state.auth);
-  const items = user?.isStudent ? studentNav : TeacherNav;
 
   const location = useLocation().pathname.split("/")[1] || "/";
 
@@ -35,13 +28,49 @@ const Navbar = () => {
           />
         </NavLink>
         <div className="ml-20 flex justify-around gap-14 items-center">
-          {items.map((item) => (
-            <NavLink to={item.path ? item.path : "/"}>
-              <p className="cursor-pointer hover:text-[#818181]" key={item.id}>
-                {item.name}
-              </p>
+          <NavLink to="/">
+            <p className="cursor-pointer hover:text-[#818181]">Home</p>
+          </NavLink>
+          <Dropdown>
+            <DropdownTrigger>
+              <div className="cursor-pointer flex gap-2 items-center">
+                <p className="hover:text-[#818181]">Categories</p>
+                <div>
+                  <ChevronDown fill="currentColor" size={16} />
+                </div>
+              </div>
+            </DropdownTrigger>
+            <DropdownMenu aria-label="Static Actions">
+              <DropdownItem
+                onPress={() => {
+                  navigate("/project/all?category=software");
+                }}
+                key="software"
+              >
+                Software
+              </DropdownItem>
+              <DropdownItem
+                onPress={() => {
+                  navigate("/project/all?category=hardware");
+                }}
+                key="hardware"
+              >
+                Hardware
+              </DropdownItem>
+            </DropdownMenu>
+          </Dropdown>
+          <NavLink to="/">
+            <p className="cursor-pointer hover:text-[#818181]">Institute</p>
+          </NavLink>
+          {!user || user.isStudent ? (
+            <NavLink to="myProjects">
+              <p className="cursor-pointer hover:text-[#818181]">My Projects</p>
             </NavLink>
-          ))}
+          ) : (
+            <NavLink to="dashboard">
+              <p className="cursor-pointer hover:text-[#818181]">Dashboard</p>
+            </NavLink>
+          )}
         </div>
       </div>
 
@@ -52,18 +81,24 @@ const Navbar = () => {
           >
             {location == "login" ? "Not registered?" : "Already registered?"}
           </p>
-          <NavLink to="signup">
-            <Button show={location != "signup"} text={"Sign up"} />
-          </NavLink>
-          <NavLink to="login">
-            <Button
-              show={location != "login"}
-              color={
-                location != "login" && location != "signup" ? "grey" : "orange"
-              }
-              text={"Login"}
-            />
-          </NavLink>
+          {location != "signup" && (
+            <NavLink to="signup">
+              <Button className="text-white bg-orange rounded-md drop-shadow font-rem text-md">
+                Sign up
+              </Button>
+            </NavLink>
+          )}
+          {location != "login" && (
+            <NavLink to="login">
+              <Button
+                className={`bg-${
+                  location != "signup" ? "grey text-black" : "orange text-white"
+                } rounded-md drop-shadow font-rem text-md `}
+              >
+                Login
+              </Button>
+            </NavLink>
+          )}
         </div>
       ) : (
         <div>

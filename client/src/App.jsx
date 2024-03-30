@@ -6,6 +6,8 @@ import { setLoginStatus } from "./redux/features/authSlice";
 import { useDispatch } from "react-redux";
 import { useScrollToTop } from "./hooks/useScrollToTop";
 import { NextUIProvider } from "@nextui-org/react";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   useScrollToTop();
@@ -32,6 +34,7 @@ function App() {
 
   return (
     <>
+      <ToastContainer />
       <NextUIProvider>
         {isLoading ? (
           <div>Server is starting...</div>

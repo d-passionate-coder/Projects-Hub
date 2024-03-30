@@ -34,7 +34,7 @@ const PlagiarismChecker = () => {
   return (
     <div>
       <div className="bg-white relative rounded-lg shadow my-2 p-8 font-poppins">
-        <div className="p-8  px-10 font-poppins h-80 min-w-96  text-base flex flex-col gap-4">
+        <div className="p-8  px-10 font-poppins min-h-80 min-w-96  text-base flex flex-col gap-4">
           {loading || !plagReport ? (
             <div>Loading...</div>
           ) : (

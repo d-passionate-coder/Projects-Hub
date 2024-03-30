@@ -47,14 +47,15 @@ const computePlagiarism = (req, res) => {
         const curId = id;
         const projects = await Project.find({
           _id: { $ne: curId },
-          status: "Approved",
+          status: { $ne: "Rejected" },
+          "proposal.status": "Approved",
         });
         try {
           if (!projects) return res.send([]);
           const corpusText = await Promise.all(
             projects.map(async (project) => {
               const extractedText = await extractTextFromBuffer(
-                project.content
+                project.content || project.proposal.content
               );
               return {
                 id: project._id,

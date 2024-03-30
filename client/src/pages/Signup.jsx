@@ -5,11 +5,12 @@ import collegeData from "../constants/engineering_colleges.json";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import registerUser from "../redux/actions/signup";
+import { Button } from "@nextui-org/react";
 
 const Signup = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { user } = useSelector((state) => state.auth);
+  const { user, loading } = useSelector((state) => state.auth);
 
   useEffect(() => {
     if (user) navigate("/");
@@ -96,13 +97,16 @@ const Signup = () => {
           <label htmlFor="institute">Select Institute</label>
           <div className="flex gap-3 items-center border border-[#E1E3E6] border-2 rounded-lg h-8 px-3">
             <select
+              required
               className="w-full focus:outline-none text-xs"
               name="institute"
               id="institute"
               value={institute}
               onChange={handleChange}
             >
-              <option selected>Your institute</option>
+              <option value="" selected>
+                Your institute
+              </option>
               {collegeData.map((item) => (
                 <option value={item.name}>{item.name}</option>
               ))}
@@ -144,9 +148,21 @@ const Signup = () => {
             value={password}
             onChange={handleChange}
           />
-          <button className="bg-orange text-white w-full flex justify-center items-center rounded-lg drop-shadow cursor-pointer p-1 mt-4 text-base">
-            Register
-          </button>
+          {loading ? (
+            <Button
+              className="bg-orange  text-white text-base font-rem h-8 rounded-lg"
+              isLoading
+            >
+              Register
+            </Button>
+          ) : (
+            <Button
+              className="bg-orange text-white text-base font-rem h-8 rounded-lg"
+              type="submit"
+            >
+              Register
+            </Button>
+          )}
         </form>
       </div>
     </div>

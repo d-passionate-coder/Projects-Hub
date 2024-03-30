@@ -9,9 +9,9 @@ export const fetchProjectsBycount = async (count) => {
   }
 };
 
-export const fetchAllProjects = async () => {
+export const fetchAllProjects = async (url) => {
   try {
-    const res = await axios.get("project/all");
+    const res = await axios.get(url);
     return res.data;
   } catch (error) {
     return error;

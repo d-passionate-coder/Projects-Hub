@@ -32,6 +32,7 @@ const projectSchema = new mongoose.Schema(
       type: Boolean,
       default: true,
     },
+    institute: String,
     createdBy: { type: Schema.Types.ObjectId, ref: "user" },
   },
   { timestamps: true }

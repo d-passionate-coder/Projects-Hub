@@ -3,9 +3,10 @@ import InputBox from "../components/utils/InputBox";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../redux/actions/login";
+import { Button } from "@nextui-org/react";
 
 const Login = () => {
-  const { user } = useSelector((state) => state.auth);
+  const { user, loading } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -64,9 +65,24 @@ const Login = () => {
             value={password}
             onChange={handleChange}
           />
-          <button className="bg-orange text-white w-full flex justify-center items-center rounded-lg drop-shadow cursor-pointer p-1 mt-4 text-base">
+          {/* <button className="bg-orange text-white w-full flex justify-center items-center rounded-lg drop-shadow cursor-pointer p-1 mt-4 text-base">
             Login
-          </button>
+          </button> */}
+          {loading ? (
+            <Button
+              className="bg-orange  text-white text-base font-rem h-8 rounded-lg"
+              isLoading
+            >
+              Login
+            </Button>
+          ) : (
+            <Button
+              className="bg-orange text-white text-base font-rem h-8 rounded-lg"
+              type="submit"
+            >
+              Login
+            </Button>
+          )}
         </form>
       </div>
     </div>

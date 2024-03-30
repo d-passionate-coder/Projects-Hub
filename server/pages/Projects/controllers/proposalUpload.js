@@ -15,6 +15,7 @@ const handleProposalUpload = (req, res) => {
     guide: guide_id,
     proposal: proposalContent,
     createdBy: req.user.id,
+    institute: req.user.institute,
   })
     .then((project) => {
       User.findById(req.user.id)

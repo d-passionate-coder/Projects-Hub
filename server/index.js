@@ -16,6 +16,10 @@ import corsOptions from "./config/corsOptions.js";
 import MongoStore from "connect-mongo";
 import forceSecureConnection from "./pages/Auth/middlewares/forceSecureConnection.js";
 import checkAuth from "./pages/Auth/middlewares/checkAuth.js";
+import {
+  addNewFaculty,
+  addNewStudent,
+} from "./pages/Auth/controllers/addUser.js";
 
 const app = express();
 const PORT = process.env.PORT;
@@ -56,6 +60,8 @@ app.use(passport.session());
 app.use("/logout", logoutRoute);
 app.use("/signup", signupRoute);
 app.use("/login", logInroute);
+app.post("/newStudent", addNewStudent);
+app.post("/newFaculty", addNewFaculty);
 app.get("/checkLogin", checkLogin);
 app.get("/guideByInstitute", getGuideByInstitute);
 app.use("/project", projectRoute);

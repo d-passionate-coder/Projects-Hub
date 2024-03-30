@@ -15,7 +15,7 @@ function getCollegeShortForm(collegeName) {
 
 const ProjectCard = ({ project }) => {
   const navigate = useNavigate();
-  const { title, statement, category, id, createdBy } = project;
+  const { title, statement, category, id, institute } = project;
 
   let str = statement.substring(0, Math.min(statement.length, 150));
   str += "...";
@@ -28,7 +28,7 @@ const ProjectCard = ({ project }) => {
           <div className="text-center p-1 px-2 text-white bg-black">
             {category?.toUpperCase()}
           </div>
-          <p>{getCollegeShortForm(createdBy.institute)}</p>
+          <p>{getCollegeShortForm(institute)}</p>
         </div>
         <p className="font-poppins font-bold text-2xl p-2">{title}</p>
         <p className="p-2 text-foreground2">{str}</p>

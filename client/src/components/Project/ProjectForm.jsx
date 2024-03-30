@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import getProjects from "../../redux/actions/getProjects";
 import { useNavigate } from "react-router-dom";
 import { uploadProject } from "../../api/Upload";
+import { Button } from "@nextui-org/react";
 
 const ProjectForm = () => {
   const dispatch = useDispatch();
@@ -80,14 +81,11 @@ const ProjectForm = () => {
             {projects &&
               projects.length > 0 &&
               projects.map(
-                (project) =>
-                  project.proposalStatus === "Approved" && (
-                    <option
-                      key={project.id}
-                      value={project.id}
-                      className="text-xs"
-                    >
-                      {project.title}
+                ({ projectStatus, proposalStatus, title, id }) =>
+                  proposalStatus === "Approved" &&
+                  projectStatus !== "Approved" && (
+                    <option key={id} value={id} className="text-xs">
+                      {title}
                     </option>
                   )
               )}
@@ -135,9 +133,12 @@ const ProjectForm = () => {
             />
           </div>
         </div>
-        <button className="bg-orange text-white w-full flex justify-center items-center rounded-lg drop-shadow cursor-pointer p-1 mt-4 text-base">
+        <Button
+          className="bg-orange text-white text-base font-rem h-8 rounded-lg"
+          type="submit"
+        >
           Submit
-        </button>
+        </Button>
       </form>
     </div>
   );
