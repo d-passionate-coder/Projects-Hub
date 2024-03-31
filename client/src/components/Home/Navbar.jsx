@@ -73,7 +73,6 @@ const Navbar = () => {
           )}
         </div>
       </div>
-
       {!isLoggedIn ? (
         <div className="flex justify-between gap-3 items-center pr-2">
           <p
@@ -82,22 +81,22 @@ const Navbar = () => {
             {location == "login" ? "Not registered?" : "Already registered?"}
           </p>
           {location != "signup" && (
-            <NavLink to="signup">
-              <Button className="text-white bg-orange rounded-md drop-shadow font-rem text-md">
-                Sign up
-              </Button>
-            </NavLink>
+            <Button
+              onPress={() => navigate("signup")}
+              className="text-white bg-orange rounded-md drop-shadow font-rem text-md"
+            >
+              Sign up
+            </Button>
           )}
           {location != "login" && (
-            <NavLink to="login">
-              <Button
-                className={`bg-${
-                  location != "signup" ? "grey text-black" : "orange text-white"
-                } rounded-md drop-shadow font-rem text-md `}
-              >
-                Login
-              </Button>
-            </NavLink>
+            <Button
+              onPress={() => navigate("login")}
+              className={`bg-${
+                location != "signup" ? "grey text-black" : "orange text-white"
+              } rounded-md drop-shadow font-rem text-md `}
+            >
+              Login
+            </Button>
           )}
         </div>
       ) : (

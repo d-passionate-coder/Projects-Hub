@@ -44,13 +44,13 @@ const router = createBrowserRouter(
       <Route path="login" element={<Login />} />
       <Route path="" element={<ProtectedRoutes />}>
         <Route path="project">
-          <Route path=":id" element={<ViewProject />} />
-          <Route path="all" element={<AllProjects />} />
           <Route path="upload" element={<ProjectUpload />}>
             <Route path="submit/:step" element={<ProjectForm />} />
             <Route path="approval/:step/:id" element={<Approval />} />
             <Route path="" element={<Navigate to="submit/1" replace />} />
           </Route>
+          <Route path=":id" element={<ViewProject />} />
+          <Route path="all" element={<AllProjects />} />
         </Route>
         <Route path="myProjects" element={<MyProjects />} />
         <Route path="dashboard" element={<Dashboard />} />

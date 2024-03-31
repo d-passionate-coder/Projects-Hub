@@ -11,9 +11,6 @@ const AllProjects = () => {
   const searchParams = new URLSearchParams(search);
   let title = searchParams.get("title");
   let category = searchParams.get("category");
-  console.log(search);
-  console.log(title);
-  console.log(category);
 
   useEffect(() => {
     let url = "project/all";

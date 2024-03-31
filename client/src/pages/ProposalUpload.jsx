@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import ProgressLevels from "../components/Project/ProgressLevels.jsx";
 import { Outlet, useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";

@@ -78,11 +78,12 @@ const MyProjects = () => {
     <div className="px-24 py-10 font-poppins">
       <div className="flex justify-between items-center pt-4 pb-7">
         <p className="font-graphieBold text-4xl">Project proposals</p>
-        <NavLink to={"/proposal/upload/submit/1"}>
-          <Button className="text-white bg-orange rounded-md drop-shadow font-rem text-md">
-            New
-          </Button>
-        </NavLink>
+        <Button
+          onPress={() => navigate("/proposal/upload")}
+          className="text-white bg-orange rounded-md drop-shadow font-rem text-md"
+        >
+          New
+        </Button>
       </div>
       {loading || !projects ? (
         <p>Loading....</p>
@@ -95,11 +96,12 @@ const MyProjects = () => {
       )}
       <div className="flex justify-between items-center pt-16 pb-7">
         <p className="font-graphieBold text-4xl">Final submissions</p>
-        <NavLink to="/project/upload/submit/1">
-          <Button className="text-white bg-orange rounded-md drop-shadow font-rem text-md">
-            New
-          </Button>
-        </NavLink>
+        <Button
+          onPress={() => navigate("/project/upload")}
+          className="text-white bg-orange rounded-md drop-shadow font-rem text-md"
+        >
+          New
+        </Button>
       </div>
       {loading || !projects ? (
         <p>Loading....</p>

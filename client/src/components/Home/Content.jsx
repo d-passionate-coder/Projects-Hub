@@ -56,12 +56,12 @@ const Content = () => {
             </p>
           </div>
           <div>
-            <NavLink to="/proposal/upload/submit/1">
-              {/* <Button text={"Take me there!"} width={"custom"} /> */}
-              <Button className="text-white bg-orange rounded-md drop-shadow font-rem text-md">
-                Take me there!
-              </Button>
-            </NavLink>
+            <Button
+              onPress={() => navigate("/proposal/upload")}
+              className="text-white bg-orange rounded-md drop-shadow font-rem text-md"
+            >
+              Take me there!
+            </Button>
           </div>
         </div>
       </div>
