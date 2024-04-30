@@ -31,7 +31,7 @@ import Dashboard from "./pages/Dashboard.jsx";
 import ViewProposal from "./pages/ViewProposal.jsx";
 import AddNewUser from "./pages/AddNewUser.jsx";
 
-axios.defaults.baseURL = "http://localhost:8000/";
+axios.defaults.baseURL = "https://university-projects-hub-api.onrender.com/";
 axios.defaults.withCredentials = true;
 
 if (process.env.NODE_ENV === "production") disableReactDevTools();
