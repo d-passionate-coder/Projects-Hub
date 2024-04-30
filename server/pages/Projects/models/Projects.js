@@ -28,10 +28,6 @@ const projectSchema = new mongoose.Schema(
     plagiarism: {
       report: Array,
     },
-    approved: {
-      type: Boolean,
-      default: true,
-    },
     institute: String,
     createdBy: { type: Schema.Types.ObjectId, ref: "user" },
   },
